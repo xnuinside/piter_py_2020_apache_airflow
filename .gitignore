@@ -1,0 +1,10 @@
+.idea/
+*__pycache__/
+*.pytest_cache/
+*.pyc
+docker-compose-*
+venv/
+database/
+files/
+logs/
+files/
