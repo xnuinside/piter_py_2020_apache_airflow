@@ -5,6 +5,6 @@
 docker-compose-*
 venv/
 database/
-files/
 logs/
 files/
+.history/
