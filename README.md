@@ -39,6 +39,19 @@ pip3 install -r requirements-dev.txt
 ## Contacts
 Join our [Telegram Group](https://t.me/piter_py_2020_aw) to receive pipeline's notifications
 
+## For Ubuntu Users
+Possible, that at the start you will got an error:
+
+PermissionError: [Errno 13] Permission denied: '/opt/airflow/logs/scheduler'
+
+To fix it in docker-compose.yml file change all volumes
+
+  - ./logs:/opt/airflow/logs
+
+to:
+
+  - /opt/airflow/logs
+
 
 ## For Windows 10 Users
 If you try to work on Windows 10 & run docker-compose on it you will got an issue for **postgres** service:
