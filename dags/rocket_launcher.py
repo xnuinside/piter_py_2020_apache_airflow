@@ -1,9 +1,11 @@
+import os
 from datetime import datetime
 from random import choice
 
 from airflow import DAG
 from airflow.contrib.sensors.file_sensor import FileSensor
 from airflow.operators.bash_operator import BashOperator
+from airflow.operators.http_operator import SimpleHttpOperator
 from airflow.operators.python_operator import BranchPythonOperator
 
 
@@ -14,14 +16,31 @@ def toss_a_coin_fn():
     return 'no_launch_for_today'
 
 
-with DAG(dag_id='rocket_launcher',
-         start_date=datetime(2020, 7, 21),
-         schedule_interval=None,
-         max_active_runs=1,
-         catchup=False) as dag:
+default_args = {
+    'dag_id': 'rocket_launcher',
+    'start_date': None,
+    'schedule_interval': None,
+    'max_active_runs': 1,
+    'catchup': False
+}
+
+with DAG(**default_args) as dag:
     toss_a_coin = BranchPythonOperator(
         task_id='toss_a_coin',
         python_callable=toss_a_coin_fn
+    )
+
+    fetch_the_weather_details = SimpleHttpOperator(
+        task_id='fetch_the_weather_details',
+        endpoint='/data/2.5/onecall',
+        method='GET',
+        http_conn_id='api.openweathermap.org',
+        data={
+            'lat': 60,
+            'lon': 30,
+            'exclude': 'minutely,hourly,daily',
+            'appid': os.environ['WEATHER_API_KEY']
+        }
     )
 
     prepare_for_the_launch = BashOperator(
