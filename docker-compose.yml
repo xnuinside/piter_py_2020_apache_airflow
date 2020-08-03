@@ -99,7 +99,7 @@ services:
   initdb:
     build:
       context: .
-    image: custom_airflow:latest
+    image: airflow:latest
     env_file:
       - .env
     volumes:
