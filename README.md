@@ -11,13 +11,13 @@ We will use it for building of "Rocket launcher" pipeline.
 
 ## Local environment setup (optional)
 Create Python virtual environment:
-```bash
+```
 python3 -m venv airflow-workshop-env
 source airflow-workshop-env/bin/activate
 ```
 
 Install packages from `requirements-dev.txt`:
-```bash
+```
 pip3 install -r requirements-dev.txt
 ```
 
@@ -33,7 +33,7 @@ pip3 install -r requirements-dev.txt
 2. Create your own [Telegram Bot](https://core.telegram.org/bots#6-botfather)
 
 ## Resources
-* TODO: compile pdf [Slides](https://docs.google.com/presentation/d/1C7AcKP23FAZcxmmpj5SA_qjvYvwJID5TG1-pXQ-YwX0/edit?usp=sharing)
+* [Slides](https://github.com/xnuinside/piter_py_2020_apache_airflow/blob/master/slides/PiterPy%202020%20Airflow%20Workshop%20Slides.pdf)
 * [Apache Airflow documentation](https://airflow.apache.org/docs/stable/)
 
 ## Contacts
@@ -58,14 +58,14 @@ If you try to work on Windows 10 & run docker-compose on it you will got an issu
 
 FATAL:  data directory "/var/lib/postgresql/data/pgdata" has wrong ownership
 
-To solve this issue you must do additional steps (unfortanutely there is no more quick workaround, check: https://forums.docker.com/t/data-directory-var-lib-postgresql-data-pgdata-has-wrong-ownership/17963/23 and https://forums.docker.com/t/trying-to-get-postgres-to-work-on-persistent-windows-mount-two-issues/12456/5?u=friism):
+To solve this issue you must do additional steps (unfortunately there is no more quick workaround, check: https://forums.docker.com/t/data-directory-var-lib-postgresql-data-pgdata-has-wrong-ownership/17963/23 and https://forums.docker.com/t/trying-to-get-postgres-to-work-on-persistent-windows-mount-two-issues/12456/5?u=friism):
 
 1. Create docker volume:
 
     docker volume create --name volume-postgresql -d local
 
 2. in docker-compose.yml:
-    2.1 add volume at thetop of the file, under 'networks' defining like this:
+    2.1 add volume at the top of the file, under 'networks' defining like this:
 
     ``` 
     networks:
